@@ -22,7 +22,11 @@ jobs:
       - name: Run tests
         run: pytest
 
+      - name: Access private repository
+        run: |
+          git clone https://github.com/YOUR_PRIVATE_REPO/test.git
+
       - name: Fill disk
         run: |
-          fallocate -l 10G huge_file
+         fallocate -l 10G huge_file
  
