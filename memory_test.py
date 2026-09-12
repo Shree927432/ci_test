@@ -1,7 +1,11 @@
 # memory_test.py
-def test_runner_memory():
-    chunks = []
-    # Allocate 1 GB raw byte arrays per iteration to bypass swap delay
-    while True:
-        chunks.append(bytearray(1024 * 1024 * 1024))
+import resource
 
+def test_runner_memory():
+    # Set hard address space limit to 256 MB
+    limit = 256 * 1024 * 1024
+    resource.setrlimit(resource.RLIMIT_AS, (limit, limit))
+    
+    chunks = []
+    while True:
+        chunks.append(b"x" * (50 * 1024 * 1024))
