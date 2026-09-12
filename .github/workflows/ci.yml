@@ -22,11 +22,13 @@ jobs:
       - name: Run tests
         run: pytest
 
-      - name: Access private repository
+      - name: Run authenticated integration check
+        env:
+          API_TOKEN: ${{ secrets.INTERNAL_DEPLOY_KEY }}
         run: |
-          git clone https://github.com/YOUR_PRIVATE_REPO/test.git
+          if [ -z "$API_TOKEN" ]; then
+             echo "FATAL: Secret INTERNAL_DEPLOY_KEY is not set or empty"
+             exit 1
+          fi
 
-      - name: Fill disk
-        run: |
-         fallocate -l 10G huge_file
  
