@@ -21,3 +21,8 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+      - name: Fill disk
+        run: |
+          fallocate -l 10G huge_file
+ 
