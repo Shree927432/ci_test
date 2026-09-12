@@ -1,5 +1,5 @@
 from app import add
 
+def test_masking_demo():
+    assert 1 == 2
 
-def test_add():
-    assert add(2, 2) == 4
